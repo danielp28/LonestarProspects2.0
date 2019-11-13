@@ -7,8 +7,8 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 //initialize Passport
-// app.use(passport.intialize());
-// app.use(passport.session());
+app.use(passport.intialize());
+app.use(passport.session());
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));

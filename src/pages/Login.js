@@ -27,7 +27,9 @@ class athleteAccount extends Component {
             firstName : this.state.firstName,
             lastName: this.state.lastName,
         }
-        API.(newAccount);
+        // API.(newAccount);
     };
 
 }
+
+export default Login;
