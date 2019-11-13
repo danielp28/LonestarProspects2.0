@@ -35,8 +35,10 @@ class Player extends Component {
             highschool: this.state.highschool,
             class: this.state.class,
 
-        }
+        };
+
         API.getPlayer(playerSearch);
+
     };
 
 
@@ -53,31 +55,31 @@ class Player extends Component {
                 value={this.state.firstName}
                 onChange={this.handleInputChange}
                 name="firstName"
-                placeholder="firstName"
+                placeholder="First Name"
               />
               <Input
                 value={this.state.lastName}
                 onChange={this.handleInputChange}
                 name="lastName"
-                placeholder="lastName"
+                placeholder="Last Name"
               />
               <Input
                 value={this.state.position}
                 onChange={this.handleInputChange}
                 name="position"
-                placeholder="position"
+                placeholder="Position"
               />
               <Input
                 value={this.state.highschool}
                 onChange={this.handleInputChange}
                 name="highschool"
-                placeholder="highschool"
+                placeholder="High School"
               />
               <Input
                 value={this.state.class}
                 onChange={this.handleInputChange}
                 name="class"
-                placeholder="class"
+                placeholder="Class"
               />
               <FormBtn
                 onClick={this.handleFormSubmit}
