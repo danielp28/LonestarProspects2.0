@@ -1,19 +1,26 @@
+// src/components/NavBar.js
+
 import React from "react";
+import { useAuth0 } from "../../react-auth0-spa";
 
-function Nav() {
+const NavBar = () => {
+  const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
+
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
-      <a className="navbar-brand" href="/">
-        <h3>Home</h3>
-      </a>
-      <a className="navbar-brand" href="/players">
-        Recruits
-      </a>
-      <a className="navbar-brand" href="/coaches">
-        Coaches
-      </a>
-    </nav>
-  );
-}
+    <div>
+      {!isAuthenticated && (
+        <button
+          onClick={() =>
+            loginWithRedirect({})
+          }
+        >
+          Log in
+        </button>
+      )}
 
-export default Nav;
+      {isAuthenticated && <button onClick={() => logout()}>Log out</button>}
+    </div>
+  );
+};
+
+export default NavBar;

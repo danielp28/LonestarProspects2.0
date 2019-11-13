@@ -1,17 +1,29 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { useAuth0 } from "./react-auth0-spa";
 import Coach from "./pages/Coach";
 import Player from "./pages/Player";
 import Home from "./pages/Home";
 // import Login from "./pages/Login";
 // import NoMatch from "./pages/NoMatch";
-import Nav from "./components/Nav";
+import NavBar from "./components/Nav";
 
 function App() {
+  const { loading } = useAuth0();
+  if (loading) {
+    return (
+      <div>Loading...</div>
+    );
+  }
   return (
     <Router>
       <div>
-        <Nav/>
+      
+    <div className="App">
+      <header>
+        <NavBar />
+      </header>
+    </div>
 
         <Switch>
           <Route exact path="/" component={Home}/>
