@@ -2,13 +2,11 @@ const express = require("express");
 const mongoose = require("mongoose");
 const apiRoutes = require("./routes/apiRoutes");
 const htmlRoutes = require("./routes/htmlRoutes");
-const passport = require("./passport/passport")
+
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-//initialize Passport
-app.use(passport.intialize());
-app.use(passport.session());
+
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
