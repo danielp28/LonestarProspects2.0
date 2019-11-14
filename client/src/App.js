@@ -40,7 +40,7 @@ function App() {
           <Route exact path="/" component={Home}/>
           <Route exact path="/players" component={Player}/>
           <Route exact path="/coaches" component={Coach}/>
-          <Route exact path="/profile-page" component={ProfilePage}/>
+          <Route path="/players/:id" component={ProfilePage}/>
           {/* <Route path="*" component={NoMatch}/> */}
         </Switch>
       </div>
