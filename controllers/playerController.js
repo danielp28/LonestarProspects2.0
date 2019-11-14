@@ -128,20 +128,21 @@ module.exports = {
   },
   findSkills: (req, res) => {
     db.Player
-    .findById({ _id: req.params.id })
-    .then(() => {
-        let currentPosition = req.params.position;
+      .findById({ _id: req.params.id })
+      .then((dbModel) => {
+        let currentPosition = dbModel.position;
         let skillsNeeded = [];
-        for (i in skillsByPosition[currentPosition]) {
-          for (skill in allSkills) {
-            if (skillsByPosition[currentPosition][i] === skill) {
-              skillsNeeded.push(skill)
+        for (var i = 0; i < skillsByPosition[currentPosition].length; i++) {
+          for (var j = 0; j < allSkills.length; j++) {
+            if (skillsByPosition[currentPosition][i] === allSkills[j]) {
+              skillsNeeded.push(allSkills[j])
             }
           }
         }
-        this.position.skills.push(skillsNeeded)
+        db.Player
+          .findOneAndUpdate({ _id: req.params.id }, { skills: skillsNeeded })
       })
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
   }
-
-
 };
