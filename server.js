@@ -1,7 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const apiRoutes = require("./routes/apiRoutes");
-const htmlRoutes = require("./routes/htmlRoutes");
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -17,7 +16,6 @@ if (process.env.NODE_ENV === "production") {
 }
 // Add routes, both API and view
 app.use(apiRoutes);
-app.use(htmlRoutes);
 
 // Connect to the Mongo DB
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/prospects");
