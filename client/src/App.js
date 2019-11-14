@@ -4,12 +4,13 @@ import { useAuth0 } from "./react-auth0-spa";
 import Coach from "./views/pages/Coach";
 import Player from "./views/pages/Player";
 import Home from "./views/pages/Home";
-// import "./assets/css/bootstrap.min.css";
+import "./assets/css/bootstrap.min.css";
 // import "./assets/scss/paper-kit.scss";
-// import "./assets/demo/demo.css";
+import "./assets/demo/demo.css";
 // import Login from "./pages/Login";
 // import NoMatch from "./pages/NoMatch";
 import NavBar from "./components/Nav";
+import ProfilePage from "./views/pages/ProfilePage";
 
 
 
@@ -35,6 +36,7 @@ function App() {
           <Route exact path="/" component={Home}/>
           <Route exact path="/players" component={Player}/>
           <Route exact path="/coaches" component={Coach}/>
+          <Route exact path="/profile-page" component={ProfilePage}/>
           {/* <Route path="*" component={NoMatch}/> */}
         </Switch>
       </div>
