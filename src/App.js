@@ -1,12 +1,18 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { useAuth0 } from "./react-auth0-spa";
-import Coach from "./pages/Coach";
-import Player from "./pages/Player";
-import Home from "./pages/Home";
+import Coach from "./views/pages/Coach";
+import Player from "./views/pages/Player";
+import Home from "./views/pages/Home";
+// import "./assets/css/bootstrap.min.css";
+// import "./assets/scss/paper-kit.scss";
+// import "./assets/demo/demo.css";
 // import Login from "./pages/Login";
 // import NoMatch from "./pages/NoMatch";
 import NavBar from "./components/Nav";
+
+
+
 
 function App() {
   const { loading } = useAuth0();
@@ -14,7 +20,7 @@ function App() {
     return (
       <div>Loading...</div>
     );
-  }
+  } 
   return (
     <Router>
       <div>
