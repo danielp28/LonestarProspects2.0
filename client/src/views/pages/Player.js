@@ -6,6 +6,22 @@ import { Col, Row, Container } from "../../components/Grid";
 import { Input, FormBtn } from "../../components/Form";
 // import { Input, FormBtn, DropDown } from "../../components/Form";
 import API from "../../utils/API"
+// import db from "../models";
+
+const rightSkills = [
+  {
+    "name": "Size",
+    "points": 9
+  },
+  {
+    "name": "Speed",
+    "points": 7
+  },
+  {
+    "name": "Accuracy",
+    "points": 2
+  },
+]
 
 class Player extends Component {
   // Initialize this.state.books as an empty array
@@ -35,7 +51,10 @@ class Player extends Component {
     let newPlayer = {
       firstName: this.state.firstName,
       lastName: this.state.lastName,
-      position: this.state.position,
+      position: {
+        name: this.state.position,
+        skills: rightSkills
+      },
       height: this.state.height,
       weight: this.state.weight,
       highschool: this.state.highschool,
@@ -48,6 +67,10 @@ class Player extends Component {
       .then(res => {this.getPlayers(); console.log(res.data)})
       .catch(err => console.log(err));
   };
+
+  // getSkills = () => {
+  //   db.findSkills(this.state.)
+  // }
 
   render() {
     return (
@@ -77,7 +100,12 @@ class Player extends Component {
                 placeholder="Position"
               /> */}
               <div className="form-group">
-                <select className="form-control custom-select position" id="positionInput">
+                <select 
+                className="form-control custom-select position" 
+                id="positionInput" 
+                name="position" 
+                onChange={this.handleInputChange}
+                >
                   <option value="N/A">Position</option>
                   <option value="proStyleQB">proStyleQB</option>
                   <option value="dualThreatQB">dualThreatQB</option>
