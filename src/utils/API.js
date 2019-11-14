@@ -4,7 +4,7 @@ export default {
 
   //create account
   createAccount : function () {
-    return axios.post("FORM");
+    return axios.post("/ACCOUNTSUBMIT");
   },
   // Gets all players
   getPlayers: function () {
