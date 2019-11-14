@@ -18,9 +18,9 @@ import {
 } from "reactstrap";
 
 // core components
-import ExamplesNavbar from "components/Navbars/ExamplesNavbar.js";
-import ProfilePageHeader from "components/Headers/ProfilePageHeader.js";
-import DemoFooter from "components/Footers/DemoFooter.js";
+import ExamplesNavbar from "../../components/Navbars/ExamplesNavbar.js";
+import ProfilePageHeader from "../../components/Headers/ProfilePageHeader.js"
+import DemoFooter from "../../components/Footers/DemoFooter";
 
 function ProfilePage() {
   const [activeTab, setActiveTab] = React.useState("1");
@@ -49,7 +49,7 @@ function ProfilePage() {
               <img
                 alt="..."
                 className="img-circle img-no-padding img-responsive"
-                src={require("assets/img/DalvinCook.png")}
+                src={require("../../assets/img/DalvinCook.png")}
               />
             </div>
             <div className="name">
@@ -110,7 +110,7 @@ function ProfilePage() {
                           <img
                             alt="..."
                             className="img-circle img-no-padding img-responsive"
-                            src={require("assets/img/OSU.jpg")}
+                            src={require("../../assets/img/OSU.jpg")}
                           />
                         </Col>
                         <Col className="ml-auto mr-auto" lg="7" md="4" xs="4">
@@ -140,7 +140,7 @@ function ProfilePage() {
                           <img
                             alt="..."
                             className="img-circle img-no-padding img-responsive"
-                            src={require("assets/img/TCU.png")}
+                            src={require("../../assets/img/TCU.png")}
                           />
                         </Col>
                         <Col lg="7" md="4" xs="4">

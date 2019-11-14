@@ -44,7 +44,7 @@ function ProfilePageHeader() {
       <div
         style={{
           backgroundImage:
-            "url(" + require("assets/img/LoneStar.png") + ")"
+            "url(" + require("../../assets/img/LoneStar.png") + ")"
         }}
         className="page-header page-header-xs"
         data-parallax={true}
