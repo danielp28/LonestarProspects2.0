@@ -1,50 +1,80 @@
 import React, { Component } from "react";
+// import { Redirect } from "react-router-dom";
 import Jumbotron from "../../components/Jumbotron";
 // import SaveBtn from "../components/SaveBtn";
 import { Col, Row, Container } from "../../components/Grid";
 // import { List, ListItem } from "../components/List";
 import { Input, FormBtn } from "../../components/Form";
 import API from "../../utils/API"
+// import ProfilePage from "./ProfilePage";
 
 class Player extends Component {
-    // Initialize this.state.books as an empty array
-    state = {
-        firstName: "",
-        lastName: "",
-        position: "",
-        highschool: "",
-        class: "",
+  // Initialize this.state.books as an empty array
+  state = {
+    firstName: "",
+    lastName: "",
+    position: "",
+    highschool: "",
+    class: "",
+    redir: false
+  };
 
-    };
+  handleInputChange = event => {
+    const value = event.target.value;
+    const name = event.target.name;
+    this.setState({
+      [name]: value
+    });
+  };
 
-    handleInputChange = event => {
-        const value = event.target.value;
-        const name = event.target.name;
-        this.setState({
-            [name]: value
-        });
-    };
+  //function to control the submit button of the search form 
+  handleFormSubmit = event => {
+    event.preventDefault();
 
-    //function to control the submit button of the search form 
-    handleFormSubmit = event => {
-        event.preventDefault();
-        let playerSearch = {
-            firstName: this.state.firstName,
-            lastName: this.state.lastName,
-            position: this.state.position,
-            highschool: this.state.highschool,
-            class: this.state.class,
+    API.getPlayers()
+      .then(res => {
+        console.log(res.data)
+        for (var i = 0; i < res.data.length; i++) {
+          if (res.data[i].firstName === this.state.firstName && res.data[i].lastName === this.state.lastName) {
+            // API.getPlayer(res.data[i]._id)
+            // .then(
+            // alert("do you want to visit " + res.data[i].firstName + " " + res.data[i].lastName + "'s page?")
+            let path = "'/players/" + res.data[i]._id + "'"
+            // let newButton = (<a href={path}> {res.data[i].firstName}, {res.data[i].lastName} </a>)
+            // this.props.history.push("'" + path + "'");  
+            console.log(path)  
 
-        };
+            // )
+          }
+          // else {
+          //   alert("that althele is not in our system")
+          // }
+        }
+      })
+      .catch(err => console.log(err));;
 
-        API.getPlayer(playerSearch);
 
-    };
+    this.setState({
+      firstName: "",
+      lastName: "",
+      position: "",
+      highschool: "",
+      class: "",
+      redir: true
+    });
+
+  };
+
+  // redirector = () => {
+    
+  //   return <Redirect to={path} />       
+
+  // }
 
 
-    render() {
-        return(
-            <Container fluid>
+  render() {
+    return (
+      <Container fluid>
         <Row>
           <Col size="md-12">
             <Jumbotron>
@@ -87,6 +117,7 @@ class Player extends Component {
                 Search Players
               </FormBtn>
             </form>
+            {this.displayData}
           </Col>
         </Row>
       </Container>
