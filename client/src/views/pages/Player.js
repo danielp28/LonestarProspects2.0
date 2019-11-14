@@ -4,6 +4,7 @@ import Jumbotron from "../../components/Jumbotron";
 import { Col, Row, Container } from "../../components/Grid";
 // import { List, ListItem } from "../components/List";
 import { Input, FormBtn } from "../../components/Form";
+// import { Input, FormBtn, DropDown } from "../../components/Form";
 import API from "../../utils/API"
 
 class Player extends Component {
@@ -41,8 +42,10 @@ class Player extends Component {
       class: this.state.class,
       film: this.state.film
     }
+    console.log(newPlayer)
+    // API.getPlayers()
     API.savePlayer(newPlayer)
-      .then(res => console.log(res.data))
+      .then(res => {this.getPlayers(); console.log(res.data)})
       .catch(err => console.log(err));
   };
 
@@ -67,12 +70,32 @@ class Player extends Component {
                 name="lastName"
                 placeholder="Last Name"
               />
-              <Input
+              {/* <DropDown
                 value={this.state.position}
                 onChange={this.handleInputChange}
                 name="position"
                 placeholder="Position"
-              />
+              /> */}
+              <div className="form-group">
+                <select className="form-control custom-select position" id="positionInput">
+                  <option value="N/A">Position</option>
+                  <option value="proStyleQB">proStyleQB</option>
+                  <option value="dualThreatQB">dualThreatQB</option>
+                  <option value="runningBack">runningBack</option>
+                  <option value="wideReceiver">wideReceiver</option>
+                  <option value="offensiveTackle">offensiveTackle</option>
+                  <option value="tightEnd">tightEnd</option>
+                  <option value="offensiveGuard">offensiveGuard</option>
+                  <option value="center">center</option>
+                  <option value="defensiveTackle">defensiveTackle</option>
+                  <option value="defensiveEnd">defensiveEnd</option>
+                  <option value="outsideLinebacker">outsideLinebacker</option>
+                  <option value="insideLinebacker">insideLinebacker</option>
+                  <option value="cornerback">cornerback</option>
+                  <option value="safety">safety</option>
+                  <option value="kicker">kicker</option>
+                </select>
+              </div>
               <Input
                 value={this.state.height}
                 onChange={this.handleInputChange}
