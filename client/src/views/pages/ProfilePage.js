@@ -1,4 +1,5 @@
 import React from "react";
+// import React, { Component } from "react";
 
 // reactstrap components
 import {
@@ -21,8 +22,29 @@ import {
 import ExamplesNavbar from "../../components/Navbars/ExamplesNavbar.js";
 import ProfilePageHeader from "../../components/Headers/ProfilePageHeader.js"
 import DemoFooter from "../../components/Footers/DemoFooter";
+// import API from "../../utils/API.js";
+
+const hisSkills = [
+  {
+    "name": "Size",
+    "points": 9
+  },
+  {
+    "name": "Speed",
+    "points": 7
+  },
+  {
+    "name": "Accuracy",
+    "points": 2
+  },
+]
+
+// function who () {
+//   API.getPlayer()
+// }
 
 function ProfilePage() {
+
   const [activeTab, setActiveTab] = React.useState("1");
 
   const toggle = tab => {
@@ -38,6 +60,14 @@ function ProfilePage() {
       document.body.classList.remove("landing-page");
     };
   });
+
+  // class ProfilePage extends Component {
+
+
+
+  // render() {
+
+
   return (
     <>
       <ExamplesNavbar />
@@ -62,8 +92,8 @@ function ProfilePage() {
           <Row>
             <Col className="ml-auto mr-auto text-center" md="6">
               <p>
-                Dalvin is one baaaaaaaaaaaaaaaaaaad man. He proved he is in the conversation for best RB in the league when 
-                he made Zeke look like a chubbier and slower version of himself. 
+                Dalvin is one baaaaaaaaaaaaaaaaaaad man. He proved he is in the conversation for best RB in the league when
+                he made Zeke look like a chubbier and slower version of himself.
               </p>
               <br />
               <Button className="btn-round" color="default" outline>
@@ -178,30 +208,19 @@ function ProfilePage() {
                 <h3>Player Evaluation Scores</h3>
                 <br />
               </div>
-                <h6>Speed</h6>
-              <Progress
-                max="100"
-                value="85"
-                barClassName="progress-bar-success"
-              />
-              <br />
-              <h6>Hands</h6>
-              <Progress max="100" value="50" barClassName="progress-bar-success" />
-              <br />
-              <h6>Pass Blocking</h6>
-              <Progress
-                max="100"
-                value="90"
-                barClassName="progress-bar-success"
-              />
-              <br />
-              <h6>Vision</h6>
-              <Progress
-                max="100"
-                value="100"
-                barClassName="progress-bar-success"
-              />
-              <br />
+              {
+                hisSkills.map(skill => (
+                  <div>
+                    <h6>{skill.name}</h6>
+                    <Progress
+                      max="10"
+                      value={skill.points}
+                      barClassName="progress-bar-success"
+                    />
+                    <br />
+                  </div>
+                ))
+              }
             </Col>
             <Col md="6">
               <div className="title">
@@ -246,7 +265,7 @@ function ProfilePage() {
               <TabContent activeTab={activeTab} className="text-center">
                 <TabPane tabId="1">
                   <h3>
-74 Attempts - 354 Yards - 2 Touchdowns (Torn ACL)
+                    74 Attempts - 354 Yards - 2 Touchdowns (Torn ACL)
                   </h3>
                 </TabPane>
                 <TabPane tabId="2">
@@ -274,5 +293,6 @@ function ProfilePage() {
     </>
   );
 }
+// }
 
 export default ProfilePage;

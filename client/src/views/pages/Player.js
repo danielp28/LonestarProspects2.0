@@ -6,22 +6,8 @@ import { Col, Row, Container } from "../../components/Grid";
 import { Input, FormBtn } from "../../components/Form";
 // import { Input, FormBtn, DropDown } from "../../components/Form";
 import API from "../../utils/API"
-// import db from "../models";
 
-const rightSkills = [
-  {
-    "name": "Size",
-    "points": 9
-  },
-  {
-    "name": "Speed",
-    "points": 7
-  },
-  {
-    "name": "Accuracy",
-    "points": 2
-  },
-]
+const emptySkills = []
 
 class Player extends Component {
   // Initialize this.state.books as an empty array
@@ -53,7 +39,7 @@ class Player extends Component {
       lastName: this.state.lastName,
       position: {
         name: this.state.position,
-        skills: rightSkills
+        skills: emptySkills
       },
       height: this.state.height,
       weight: this.state.weight,
@@ -64,13 +50,22 @@ class Player extends Component {
     console.log(newPlayer)
     // API.getPlayers()
     API.savePlayer(newPlayer)
-      .then(res => {this.getPlayers(); console.log(res.data)})
+      .then(res => { this.getPlayers(); console.log(res.data) })
       .catch(err => console.log(err));
-  };
 
-  // getSkills = () => {
-  //   db.findSkills(this.state.)
-  // }
+    this.setState({
+      firstName: "",
+      lastName: "",
+      position: "",
+      height: "",
+      weight: "",
+      highschool: "",
+      class: "",
+      film: ""
+    });
+
+    alert("you've been added!")
+  };
 
   render() {
     return (
@@ -100,11 +95,11 @@ class Player extends Component {
                 placeholder="Position"
               /> */}
               <div className="form-group">
-                <select 
-                className="form-control custom-select position" 
-                id="positionInput" 
-                name="position" 
-                onChange={this.handleInputChange}
+                <select
+                  className="form-control custom-select position"
+                  id="positionInput"
+                  name="position"
+                  onChange={this.handleInputChange}
                 >
                   <option value="N/A">Position</option>
                   <option value="proStyleQB">proStyleQB</option>
@@ -147,6 +142,12 @@ class Player extends Component {
                 onChange={this.handleInputChange}
                 name="class"
                 placeholder="Class"
+              />
+              <Input
+                value={this.state.film}
+                onChange={this.handleInputChange}
+                name="film"
+                placeholder="Film"
               />
               <FormBtn
                 onClick={this.handleFormSubmit}
