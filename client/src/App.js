@@ -5,6 +5,10 @@ import Coach from "./views/pages/Coach";
 import Player from "./views/pages/Player";
 import Home from "./views/pages/Home";
 import "./assets/css/bootstrap.min.css";
+import "./assets/css/bootstrap.min.css.map";
+import "./assets/css/paper-kit.css"
+import "./assets/css/paper-kit.css.map"
+import "./assets/css/paper-kit.min.css"
 // import "./assets/scss/paper-kit.scss";
 import "./assets/demo/demo.css";
 // import Login from "./pages/Login";
