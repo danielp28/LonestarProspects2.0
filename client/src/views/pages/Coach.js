@@ -61,7 +61,7 @@ class Player extends Component {
               lastName: result.lastName,
               position: {
                 name: result.position.name,
-                skills: result.position.name
+                skills: result.position.skills
               },
               height: result.height,
               weight: result.weight,
@@ -90,6 +90,10 @@ class Player extends Component {
     // });
 
   };
+
+  // handleProfileRequest = id => {
+  //   API.getPlayer(id)
+  // }
 
   render() {
     return (
@@ -183,7 +187,10 @@ class Player extends Component {
                       Class: {player.class}
                     </Col>
                     <Col size="md-2">
-                      <a href={"/players/" + player._id}>
+                      <a 
+                      href={"/players/" + player._id}
+                      // onClick={this.handleProfileRequest(player._id)}
+                      >
                         View player profile
                       </a>
                     </Col>

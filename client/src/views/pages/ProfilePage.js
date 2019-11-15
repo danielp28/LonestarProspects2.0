@@ -1,6 +1,5 @@
 import React from "react";
 // import React, { Component } from "react";
-
 // reactstrap components
 import {
   Button,
@@ -22,7 +21,7 @@ import {
 import ExamplesNavbar from "../../components/Navbars/ExamplesNavbar.js";
 import ProfilePageHeader from "../../components/Headers/ProfilePageHeader.js"
 import DemoFooter from "../../components/Footers/DemoFooter";
-// import API from "../../utils/API.js";
+import API from "../../utils/API.js";
 
 const hisSkills = [
   {
@@ -38,12 +37,57 @@ const hisSkills = [
     "points": 2
   },
 ]
+let playerID
+let thisPlayer = []
 
-// function who () {
-//   API.getPlayer()
-// }
+const getURL = () => {
+  const thisURL = window.location.href
+  playerID = thisURL.split("/").splice(4)[0]
+  // console.log(playerID)
+  return playerID
+}
 
-function ProfilePage() {
+const getPlayerProfile = (id) => {
+  console.log(id)
+  // const lookUp = (id.match.params.id)
+  const lookUp = (id)
+
+  API.getPlayer(lookUp)
+    .then(res => {
+      let result = res.data
+      thisPlayer.push(
+        {
+          firstName: result.firstName,
+          lastName: result.lastName,
+          position: {
+            name: result.position.name,
+            skills: result.position.skills
+          },
+          height: result.height,
+          weight: result.weight,
+          highschool: result.highschool,
+          class: result.class,
+          film: result.film
+        }
+      )
+      console.log("Look here: " + thisPlayer[0]);
+    }
+    )
+    .catch(err => console.log(err));;
+
+}
+getURL()
+
+getPlayerProfile(playerID)
+
+console.log(thisPlayer);
+console.log(thisPlayer.length);
+// console.log(thisPlayer[1])
+// class ProfilePage extends React.Component {}
+
+function ProfilePage(thisPlayer) {
+
+
 
   const [activeTab, setActiveTab] = React.useState("1");
 
@@ -67,7 +111,6 @@ function ProfilePage() {
 
   // render() {
 
-
   return (
     <>
       <ExamplesNavbar />
@@ -84,7 +127,8 @@ function ProfilePage() {
             </div>
             <div className="name">
               <h4 className="title">
-                Dalvin Cook <br />
+                {/* {thisPlayer[0].firstName} <br /> */}
+                {/* Dalvin Cook <br /> */}
               </h4>
               <h6 className="description">Running Back</h6>
             </div>
