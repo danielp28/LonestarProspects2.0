@@ -50,6 +50,11 @@ class Player extends Component {
               results.push(res.data[i])
             }          
           }
+          if (res.data[i].firstName === this.state.firstName || res.data[i].lastName === this.state.lastName) {
+            if (!results.includes(res.data[i])) {
+              results.push(res.data[i])
+            }          
+          }
           results.map(result => {
             result = {
               firstName: result.firstName,
