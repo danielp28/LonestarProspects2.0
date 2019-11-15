@@ -54,24 +54,13 @@ function LandingPageHeader() {
         <Container>
           <div className="motto text-center">
             <h1>Lone Star Prospects</h1>
-            <h3>Are you a Coach or a Recruit?</h3>
+            <h6>Are you a Coach or a Recruit?</h6>
             <br />
-            <Button
-              href="/coaches"
-              className="btn-round mr-1"
-              color="neutral"
-              target="_blank"
-              outline
-            >
-              Coach
+            <Button className="btn-round mr-1" size="lg" href="/coaches" >
+             Coach
             </Button>
-            <Button
-              href="/players"
-              className="btn-round mr-1"
-              color="neutral"
-              target="_blank"
-              outline
-            >
+            &nbsp; &nbsp; &nbsp;
+            <Button className="btn-round mr-1" size="lg" href="/players" >
               Recruit
             </Button>
           </div>
