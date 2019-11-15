@@ -30,14 +30,25 @@ class Player extends Component {
   //function to control the submit button of the search form 
   handleFormSubmit = event => {
     event.preventDefault();
+    
+    this.setState({
+      searched: []
+    })
 
     API.getPlayers()
       .then(res => {
         let results = []
         for (var i = 0; i < res.data.length; i++) {
-          if (res.data[i].firstName === this.state.firstName && res.data[i].lastName === this.state.lastName) {
-            console.log(res.data[i])
-            results.push(res.data[i])
+          if (res.data[i].position.name === this.state.position) {
+            // console.log(res.data[i])
+            if (!results.includes(res.data[i])) {
+              results.push(res.data[i])
+            }
+          }
+          if (res.data[i].class == this.state.class) {
+            if (!results.includes(res.data[i])) {
+              results.push(res.data[i])
+            }          
           }
           results.map(result => {
             result = {
@@ -58,20 +69,20 @@ class Player extends Component {
 
           this.setState({ searched: results })
 
-          console.log(this.state.searched)
         }
+        console.log(this.state.searched)
+
       })
       .catch(err => console.log(err));;
 
 
-    this.setState({
-      firstName: "",
-      lastName: "",
-      position: "",
-      highschool: "",
-      class: "",
-      redir: true
-    });
+    // this.setState({
+    //   firstName: "",
+    //   lastName: "",
+    //   position: "",
+    //   highschool: "",
+    //   class: "",
+    // });
 
   };
 
@@ -96,24 +107,51 @@ class Player extends Component {
                 name="lastName"
                 placeholder="Last Name"
               />
-              <Input
-                value={this.state.position}
-                onChange={this.handleInputChange}
-                name="position"
-                placeholder="Position"
-              />
-              <Input
+              <div className="form-group">
+                <select
+                  className="form-control custom-select position"
+                  id="positionInput"
+                  name="position"
+                  onChange={this.handleInputChange}
+                >
+                  <option value="N/A">Position</option>
+                  <option value="proStyleQB">proStyleQB</option>
+                  <option value="dualThreatQB">dualThreatQB</option>
+                  <option value="runningBack">runningBack</option>
+                  <option value="wideReceiver">wideReceiver</option>
+                  <option value="offensiveTackle">offensiveTackle</option>
+                  <option value="tightEnd">tightEnd</option>
+                  <option value="offensiveGuard">offensiveGuard</option>
+                  <option value="center">center</option>
+                  <option value="defensiveTackle">defensiveTackle</option>
+                  <option value="defensiveEnd">defensiveEnd</option>
+                  <option value="outsideLinebacker">outsideLinebacker</option>
+                  <option value="insideLinebacker">insideLinebacker</option>
+                  <option value="cornerback">cornerback</option>
+                  <option value="safety">safety</option>
+                  <option value="kicker">kicker</option>
+                </select>
+              </div>
+              {/* <Input
                 value={this.state.highschool}
                 onChange={this.handleInputChange}
                 name="highschool"
                 placeholder="High School"
-              />
-              <Input
-                value={this.state.class}
-                onChange={this.handleInputChange}
-                name="class"
-                placeholder="Class"
-              />
+              /> */}
+              <div className="form-group">
+                <select
+                  className="form-control custom-select class"
+                  id="classInput"
+                  name="class"
+                  onChange={this.handleInputChange}
+                >
+                  <option value="N/A">Class</option>
+                  <option value="2020">2020</option>
+                  <option value="2021">2021</option>
+                  <option value="2022">2022</option>
+                  <option value="2023">2023</option>
+                </select>
+              </div>
               <FormBtn
                 onClick={this.handleFormSubmit}
               >
@@ -128,23 +166,22 @@ class Player extends Component {
             {this.state.searched.length ? (
               <List>
                 {this.state.searched.map(player => (
-                  <ListItem>
-                    <a href={"/players/" + player._id}>
+                  <ListItem key={player._id}>
                     <strong>
-                      {player.firstName} {player.lastName} - {player.position.name}
+                      {player.firstName} {player.lastName}
                     </strong>
-                    </a>
-                    {/* <SaveBtn onClick={this.saveThisBook} /> */}
-                    <br></br>
-                    <div className="row">
-                      <Col size="md-2">
-                        {/* <img src={player.image} alt={player.title}></img> */}
-                        <br></br>
-                      </Col>
-                      <Col size="md-9">
-                        <a href={player.film}>Link to book info</a>
-                      </Col>
-                    </div>
+
+                    <Col size="md-2">
+                      Position: {player.position.name}
+                    </Col>
+                    <Col size="md-2">
+                      Class: {player.class}
+                    </Col>
+                    <Col size="md-2">
+                      <a href={"/players/" + player._id}>
+                        View player profile
+                      </a>
+                    </Col>
                   </ListItem>
                 ))}
               </List>
