@@ -82,34 +82,27 @@ getPlayerProfile(playerID)
 
 console.log(thisPlayer);
 console.log(thisPlayer.length);
-// console.log(thisPlayer[1])
-// class ProfilePage extends React.Component {}
 
-function ProfilePage(thisPlayer) {
+class ProfilePage extends React.Component {
 
 
 
-  const [activeTab, setActiveTab] = React.useState("1");
+  state = {
+    activeTab: "1",
+  }
 
-  const toggle = tab => {
-    if (activeTab !== tab) {
-      setActiveTab(tab);
+  setActiveTab = (tab) => {this.setState({activeTab: tab})}
+
+  toggle = tab => {
+    if (this.state.activeTab !== tab) {
+      this.setActiveTab(tab);
     }
   };
 
-  document.documentElement.classList.remove("nav-open");
-  React.useEffect(() => {
-    document.body.classList.add("landing-page");
-    return function cleanup() {
-      document.body.classList.remove("landing-page");
-    };
-  });
-
-  // class ProfilePage extends Component {
 
 
 
-  // render() {
+  render() {
 
   return (
     <>
@@ -151,9 +144,9 @@ function ProfilePage(thisPlayer) {
               <Nav role="tablist" tabs>
                 <NavItem>
                   <NavLink
-                    className={activeTab === "1" ? "active" : ""}
+                    className={this.state.activeTab === "1" ? "active" : ""}
                     onClick={() => {
-                      toggle("1");
+                      this.toggle("1");
                     }}
                   >
                     Offers
@@ -161,9 +154,9 @@ function ProfilePage(thisPlayer) {
                 </NavItem>
                 <NavItem>
                   <NavLink
-                    className={activeTab === "2" ? "active" : ""}
+                    className={this.state.activeTab === "2" ? "active" : ""}
                     onClick={() => {
-                      toggle("2");
+                      this.toggle("2");
                     }}
                   >
                     Film
@@ -173,7 +166,7 @@ function ProfilePage(thisPlayer) {
             </div>
           </div>
           {/* Tab panes */}
-          <TabContent className="following" activeTab={activeTab}>
+          <TabContent className="following" activeTab={this.state.activeTab}>
             <TabPane tabId="1" id="follows">
               <Row>
                 <Col className="ml-auto mr-auto" md="6">
@@ -275,9 +268,9 @@ function ProfilePage(thisPlayer) {
                   <Nav id="tabs" role="tablist" tabs>
                     <NavItem>
                       <NavLink
-                        className={activeTab === "1" ? "active" : ""}
+                        className={this.state.activeTab === "1" ? "active" : ""}
                         onClick={() => {
-                          toggle("1");
+                          this.toggle("1");
                         }}
                       >
                         2017
@@ -285,9 +278,9 @@ function ProfilePage(thisPlayer) {
                     </NavItem>
                     <NavItem>
                       <NavLink
-                        className={activeTab === "2" ? "active" : ""}
+                        className={this.state.activeTab === "2" ? "active" : ""}
                         onClick={() => {
-                          toggle("2");
+                          this.toggle("2");
                         }}
                       >
                         2018
@@ -295,9 +288,9 @@ function ProfilePage(thisPlayer) {
                     </NavItem>
                     <NavItem>
                       <NavLink
-                        className={activeTab === "3" ? "active" : ""}
+                        className={this.state.activeTab === "3" ? "active" : ""}
                         onClick={() => {
-                          toggle("3");
+                          this.toggle("3");
                         }}
                       >
                         2019
@@ -306,7 +299,7 @@ function ProfilePage(thisPlayer) {
                   </Nav>
                 </div>
               </div>
-              <TabContent activeTab={activeTab} className="text-center">
+              <TabContent activeTab={this.state.activeTab} className="text-center">
                 <TabPane tabId="1">
                   <h3>
                     74 Attempts - 354 Yards - 2 Touchdowns (Torn ACL)
@@ -337,6 +330,6 @@ function ProfilePage(thisPlayer) {
     </>
   );
 }
-// }
+}
 
 export default ProfilePage;
