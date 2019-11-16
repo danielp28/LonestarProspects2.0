@@ -41,8 +41,8 @@ class Player extends Component {
         for (var i = 0; i < res.data.length; i++) {
           let recordFirstName = (res.data[i].firstName).toUpperCase()
           let recordLastName = (res.data[i].lastName).toUpperCase() 
-          let firstSearch = (this.state.firstName).toUpperCase()
-          let lastSearch = (this.state.lastName).toUpperCase()
+          let firstSearch = (this.state.firstName).toUpperCase().replace(/[^a-zA-Z0-9]/g, "")
+          let lastSearch = (this.state.lastName).toUpperCase().replace(/[^a-zA-Z0-9]/g, "")
           console.log(recordFirstName, recordLastName)
           if (res.data[i].position.name === this.state.position) {
             // console.log(res.data[i])
