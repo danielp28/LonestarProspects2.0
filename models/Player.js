@@ -12,22 +12,9 @@ const playerSchema = new Schema({
   weight: { type: Number, required: true },
   highschool: { type: String, required: true },
   class: { type: Number, required: true },
+  film: {type: String, required: true}
 });
 
 const Player = mongoose.model("Player", playerSchema);
 
 module.exports = Player;
-
-
-
-// const findSkills = (currentPosition) => {
-//   let skillsNeeded = [];
-//   for (i in skillsByPosition[currentPosition]) {
-//     for (skill in allSkills) {
-//       if (skillsByPosition[currentPosition][i] === skill) {
-//         skillsNeeded.push(skill)
-//       }
-//     }
-//   }
-//   console.log(skillsNeeded)
-// }
