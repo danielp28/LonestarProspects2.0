@@ -20,7 +20,8 @@ class Player extends Component {
     weight: "",
     highschool: "",
     class: "",
-    film: ""
+    film: "", 
+    picture: ""
   };
 
   handleInputChange = event => {
@@ -127,7 +128,7 @@ class Player extends Component {
       ]
     }
 
-    function SkillSet (name, points) {
+    function SkillSet(name, points) {
       this.name = name;
       this.points = points;
     }
@@ -154,7 +155,8 @@ class Player extends Component {
       weight: this.state.weight,
       highschool: this.state.highschool,
       class: this.state.class,
-      film: this.state.film
+      film: this.state.film, 
+      picture: this.state.picture
     }
     console.log(newPlayer)
 
@@ -170,7 +172,8 @@ class Player extends Component {
       weight: "",
       highschool: "",
       class: "",
-      film: ""
+      film: "", 
+      picture: ""
     });
 
     alert("you've been added!")
@@ -265,6 +268,12 @@ class Player extends Component {
                 onChange={this.handleInputChange}
                 name="film"
                 placeholder="Film"
+              />
+              <Input
+                value={this.state.picture}
+                onChange={this.handleInputChange}
+                name="picture"
+                placeholder="Picture"
               />
               <FormBtn
                 onClick={this.handleFormSubmit}
