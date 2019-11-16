@@ -45,12 +45,11 @@ class Player extends Component {
           let lastSearch = (this.state.lastName).toUpperCase().replace(/[^a-zA-Z0-9]/g, "")
           console.log(recordFirstName, recordLastName)
           if (res.data[i].position.name === this.state.position) {
-            // console.log(res.data[i])
             if (!results.includes(res.data[i])) {
               results.push(res.data[i])
             }
           }
-          if (res.data[i].class == this.state.class) {
+          if (parseInt(res.data[i].class) === parseInt(this.state.class)) {
             if (!results.includes(res.data[i])) {
               results.push(res.data[i])
             }          

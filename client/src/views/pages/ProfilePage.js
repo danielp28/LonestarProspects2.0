@@ -129,7 +129,7 @@ class ProfilePage extends Component {
                 </h6>
               </div>
             </div>
-            <Row>
+            {/* <Row>
               <Col className="ml-auto mr-auto text-center" md="6">
                 <p>
                   Dalvin is one baaaaaaaaaaaaaaaaaaad man. He proved he is in the conversation for best RB in the league when
@@ -140,7 +140,7 @@ class ProfilePage extends Component {
                   <i className="fa fa-cog" /> Add to Prospect List
               </Button>
               </Col>
-            </Row>
+            </Row> */}
             <br />
             <div className="nav-tabs-navigation">
               <div className="nav-tabs-wrapper">
@@ -235,9 +235,11 @@ class ProfilePage extends Component {
               </TabPane>
               <TabPane className="text-center" tabId="2" id="following">
                 <h3 className="text-muted">Junior Season Highlights</h3>
-                <Button className="btn-round" color="warning">
-                  Watch Now
+                <a href={this.state.player.film}>
+                  <Button className="btn-round" color="warning">
+                    Watch Now
               </Button>
+                </a>
               </TabPane>
             </TabContent>
           </Container>
