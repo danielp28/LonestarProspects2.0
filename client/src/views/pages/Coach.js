@@ -39,6 +39,11 @@ class Player extends Component {
       .then(res => {
         let results = []
         for (var i = 0; i < res.data.length; i++) {
+          let recordFirstName = (res.data[i].firstName).toUpperCase()
+          let recordLastName = (res.data[i].lastName).toUpperCase() 
+          let firstSearch = (this.state.firstName).toUpperCase()
+          let lastSearch = (this.state.lastName).toUpperCase()
+          console.log(recordFirstName, recordLastName)
           if (res.data[i].position.name === this.state.position) {
             // console.log(res.data[i])
             if (!results.includes(res.data[i])) {
@@ -50,7 +55,7 @@ class Player extends Component {
               results.push(res.data[i])
             }          
           }
-          if (res.data[i].firstName === this.state.firstName || res.data[i].lastName === this.state.lastName) {
+          if (recordFirstName === firstSearch || recordLastName === lastSearch) {
             if (!results.includes(res.data[i])) {
               results.push(res.data[i])
             }          
@@ -189,7 +194,6 @@ class Player extends Component {
                     <Col size="md-2">
                       <a 
                       href={"/players/" + player._id}
-                      // onClick={this.handleProfileRequest(player._id)}
                       >
                         View player profile
                       </a>
