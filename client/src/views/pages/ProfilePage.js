@@ -57,6 +57,7 @@ class ProfilePage extends Component {
         highschool: "",
         class: "",
         film: "",
+        picture: ""
       }
     }, () => {
       this.getPlayerProfile(playerID);
@@ -74,6 +75,7 @@ class ProfilePage extends Component {
     API.getPlayer(id)
       .then(res => {
         let result = res.data;
+        // console.log(result)
 
         let thisPlayer =
         {
@@ -85,14 +87,15 @@ class ProfilePage extends Component {
           weight: result.weight,
           highschool: result.highschool,
           class: result.class,
-          film: result.film
+          film: result.film, 
+          picture: result.picture
         }
         this.setState({
           player: thisPlayer,
           hisSkills: result.position.skills
         }, () => {
           console.log(this.state);
-          console.log("skills:", this.state.hisSkills)
+          // console.log("picture:", this.state.picture)
 
         });
       })
@@ -113,7 +116,7 @@ class ProfilePage extends Component {
                 <img
                   alt="..."
                   className="img-circle img-no-padding img-responsive"
-                  src={require("../../assets/img/DalvinCook.png")}
+                  src={this.state.player.picture ? this.state.player.picture : require("../../assets/img/placeholder.jpg")}
                 />
               </div>
               <div className="name">
