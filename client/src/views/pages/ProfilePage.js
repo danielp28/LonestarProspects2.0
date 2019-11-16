@@ -30,7 +30,7 @@ class ProfilePage extends Component {
 
   state = {
     activeTab: "1",
-    player: [], 
+    player: [],
     hisSkills: []
   }
 
@@ -88,7 +88,7 @@ class ProfilePage extends Component {
           film: result.film
         }
         this.setState({
-          player: thisPlayer, 
+          player: thisPlayer,
           hisSkills: result.position.skills
         }, () => {
           console.log(this.state);
@@ -250,7 +250,7 @@ class ProfilePage extends Component {
                 </div>
                 {
                   this.state.hisSkills.map(skill => (
-                    <div>
+                    <div key={skill.name}>
                       <h6>{skill.name}</h6>
                       <Progress
                         max="10"
