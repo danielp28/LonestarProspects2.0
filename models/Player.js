@@ -12,7 +12,8 @@ const playerSchema = new Schema({
   weight: { type: Number, required: true },
   highschool: { type: String, required: true },
   class: { type: Number, required: true },
-  film: {type: String, required: true}
+  film: {type: String, required: true}, 
+  picture: {type: String, required: false}
 });
 
 const Player = mongoose.model("Player", playerSchema);
