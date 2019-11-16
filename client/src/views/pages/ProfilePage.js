@@ -251,12 +251,12 @@ class ProfilePage extends Component {
                 {
                   this.state.hisSkills.map(skill => (
                     <div key={skill.name}>
-                      <h6>{skill.name}</h6>
+                      <h6>{skill.name} - {skill.points}/10</h6>
                       <Progress
                         max="10"
                         value={skill.points}
                         barClassName="progress-bar-success"
-                      />
+                      /> 
                       <br />
                     </div>
                   ))
