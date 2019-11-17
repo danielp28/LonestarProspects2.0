@@ -7,10 +7,7 @@ import { Input, FormBtn } from "../../components/Form";
 // import { Input, FormBtn, DropDown } from "../../components/Form";
 import API from "../../utils/API"
 
-// const emptySkills = []
-
 class Player extends Component {
-  // Initialize this.state.books as an empty array
   state = {
     players: [],
     firstName: "",
@@ -143,7 +140,6 @@ class Player extends Component {
         }
       }
     }
-
     let newPlayer = {
       firstName: this.state.firstName,
       lastName: this.state.lastName,
@@ -235,7 +231,7 @@ class Player extends Component {
                 value={this.state.height}
                 onChange={this.handleInputChange}
                 name="height"
-                placeholder="Height"
+                placeholder="Height (ex. 6'4)"
               />
               <Input
                 value={this.state.weight}
