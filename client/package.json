@@ -1,5 +1,5 @@
 {
-  "name": "LonestarProspects2.0",
+  "name": "lonestar",
   "version": "0.1.0",
   "private": true,
   "proxy": "http://localhost:3001",
