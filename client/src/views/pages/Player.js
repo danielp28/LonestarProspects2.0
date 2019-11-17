@@ -231,7 +231,7 @@ class Player extends Component {
                 value={this.state.height}
                 onChange={this.handleInputChange}
                 name="height"
-                placeholder="Height"
+                placeholder="Height (ex. 6'4)"
               />
               <Input
                 value={this.state.weight}
