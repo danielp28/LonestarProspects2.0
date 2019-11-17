@@ -8,7 +8,7 @@ const playerSchema = new Schema({
     name: { type: String, required: true },
     skills: []
   },
-  height: { type: Number, required: true },
+  height: { type: String, required: true },
   weight: { type: Number, required: true },
   highschool: { type: String, required: true },
   class: { type: Number, required: true },
