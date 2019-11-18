@@ -18,7 +18,6 @@ import {
 } from "reactstrap";
 
 // core components
-import ExamplesNavbar from "../../components/Navbars/ExamplesNavbar.js";
 import ProfilePageHeader from "../../components/Headers/ProfilePageHeader.js"
 import DemoFooter from "../../components/Footers/DemoFooter";
 import API from "../../utils/API.js";
@@ -107,7 +106,6 @@ class ProfilePage extends Component {
 
     return (
       <>
-        <ExamplesNavbar />
         <ProfilePageHeader />
         <div className="section profile-content">
           <Container>
