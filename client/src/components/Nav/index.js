@@ -35,7 +35,6 @@
 */
 import React from "react";
 // nodejs library that concatenates strings
-import { useAuth0 } from "../../react-auth0-spa";
 
 import classnames from "classnames";
 // reactstrap components
@@ -48,10 +47,9 @@ import {
   Nav,
   Container
 } from "reactstrap";
-function NavBar() {
+function NavBar(props) {
   const [navbarColor, setNavbarColor] = React.useState("navbar-transparent");
   const [navbarCollapse, setNavbarCollapse] = React.useState(false);
-  const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
 
   const toggleNavbarCollapse = () => {
     setNavbarCollapse(!navbarCollapse);
@@ -139,27 +137,12 @@ function NavBar() {
                 <p className="d-lg-none">Instagram</p>
               </NavLink>
             </NavItem>
-            <NavItem>
-              <div>
-                {!isAuthenticated && (
-                  <button
-                    onClick={() =>
-                      loginWithRedirect({})
-                    }
-                  >
-                    Log in
-        </button>
-                )}
-                {isAuthenticated && <button onClick={() => logout()}>Log out</button>}
-
-
-              </div>
-              {/* <NavLink
-                href="https://demos.creative-tim.com/paper-kit-react/#/documentation?ref=pkr-index-navbar"
-                target="_blank"
-              >
-                <i className="nc-icon nc-book-bookmark" /> Log In
-              </NavLink> */}
+            <NavItem {...props}>
+                {!props.auth.isAuthenticated() &&
+                  <div>
+                    <button onClick={props.auth.login}>Login</button>
+                  </div>
+                }
             </NavItem>
             <NavItem>
             </NavItem>
@@ -169,4 +152,5 @@ function NavBar() {
     </Navbar>
   );
 }
-export default NavBar;
+
+export default NavBar
