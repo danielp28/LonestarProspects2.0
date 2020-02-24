@@ -1,4 +1,14 @@
-# React Webpack Skeleton
+# Lonestar Prospects
+Lonestar Prospects is a tool that allows college coaches to search out prospective high school athletes. Both coaches and athletes are able to log in and create accounts. The athletes are able to post videos of their perfomances, as well as indicate schools that they may be interested in. The coaches are able to modify athlete statistics, track or star specific athletes, and eventually will be able to contact available athletes. Lonestar Prospects is currently under production and is still undergoing changes to its style, layout and functionalities.
+
+
+
+
+
+
+
+
+## React Webpack Skeleton
 
 [Demo](http://knledg.github.io/react-webpack-skeleton/)
 
