@@ -143,7 +143,13 @@ function NavBar(props) {
                 </div>
               )}
             </NavItem>
-            <NavItem></NavItem>
+            <NavItem {...props}>
+              {props.auth.isAuthenticated() && (
+                <div>
+                  <button onClick={props.auth.logout}>Log Out</button>
+                </div>
+              )}
+            </NavItem>
           </Nav>
         </Collapse>
       </Container>
