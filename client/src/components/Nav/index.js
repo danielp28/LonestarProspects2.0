@@ -16,7 +16,6 @@
 //       )}
 //       {isAuthenticated && <button onClick={() => logout()}>Log out</button>}
 
-
 //     </div>
 //   );
 // };
@@ -45,7 +44,7 @@ import {
   NavItem,
   NavLink,
   Nav,
-  Container
+  Container,
 } from "reactstrap";
 function NavBar(props) {
   const [navbarColor, setNavbarColor] = React.useState("navbar-transparent");
@@ -89,7 +88,7 @@ function NavBar(props) {
           <button
             aria-expanded={navbarCollapse}
             className={classnames("navbar-toggler navbar-toggler", {
-              toggled: navbarCollapse
+              toggled: navbarCollapse,
             })}
             onClick={toggleNavbarCollapse}
           >
@@ -138,14 +137,13 @@ function NavBar(props) {
               </NavLink>
             </NavItem>
             <NavItem {...props}>
-                {!props.auth.isAuthenticated() &&
-                  <div>
-                    <button onClick={props.auth.login}>Login</button>
-                  </div>
-                }
+              {!props.auth.isAuthenticated() && (
+                <div>
+                  <button onClick={props.auth.login}>Login</button>
+                </div>
+              )}
             </NavItem>
-            <NavItem>
-            </NavItem>
+            <NavItem></NavItem>
           </Nav>
         </Collapse>
       </Container>
@@ -153,4 +151,4 @@ function NavBar(props) {
   );
 }
 
-export default NavBar
+export default NavBar;
