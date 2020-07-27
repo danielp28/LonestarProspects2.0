@@ -15,7 +15,7 @@ export default class Auth {
     redirectUri: REDIRECT_URI,
     audience: "https://dev-uc7sbv1x.auth0.com/userinfo",
     responseType: "token id_token",
-    scope: "openid profile",
+    scope: "openid profile email",
   });
 
   constructor() {
@@ -23,15 +23,23 @@ export default class Auth {
     this.logout = this.logout.bind(this);
     this.handleAuthentication = this.handleAuthentication.bind(this);
     this.isAuthenticated = this.isAuthenticated.bind(this);
+    this.getProfile = this.getProfile.bind(this);
+    this.isCoach = this.isCoach.bind(this);
   }
 
   login() {
     this.auth0.authorize();
+    // login
+    // get email
+    // hit user endpoint
+      // user endpoint will check if user exists
+      // if user doesn't exist, it will create them with isCoach false
   }
 
   handleAuthentication() {
     this.auth0.parseHash((err, authResults) => {
       if (authResults && authResults.accessToken && authResults.idToken) {
+        console.log(authResults);
         let expiresAt = JSON.stringify(
           authResults.expiresIn * 1000 + new Date().getTime()
         );
@@ -65,5 +73,12 @@ export default class Auth {
     } else {
       return {};
     }
+  }
+
+  isCoach() {
+    return this.getProfile().email;
+    // get email
+    // look up in user table
+    // return true if has coach role, false if not
   }
 }

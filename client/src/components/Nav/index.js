@@ -47,7 +47,7 @@ import {
   Container,
 } from "reactstrap";
 function NavBar(props) {
-  
+  console.log(props.auth.isCoach())
   const [navbarColor, setNavbarColor] = React.useState("navbar-transparent");
   const [navbarCollapse, setNavbarCollapse] = React.useState(false);
 
