@@ -47,6 +47,7 @@ import {
   Container,
 } from "reactstrap";
 function NavBar(props) {
+  
   const [navbarColor, setNavbarColor] = React.useState("navbar-transparent");
   const [navbarCollapse, setNavbarCollapse] = React.useState(false);
 
@@ -142,8 +143,6 @@ function NavBar(props) {
                   <button onClick={props.auth.login}>Login</button>
                 </div>
               )}
-            </NavItem>
-            <NavItem {...props}>
               {props.auth.isAuthenticated() && (
                 <div>
                   <button onClick={props.auth.logout}>Log Out</button>
