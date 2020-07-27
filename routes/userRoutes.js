@@ -1,8 +1,13 @@
+// this file does nothing, don't waste time here
+// TODO: rip out, all routes hit controllers!
+
+
 module.exports = function (app) {
   var db = require("../models");
 
   // not done
-  app.post("/", function (req, res) {
+  app.get("/", function (req, res) {
+    console.log("hit2");
     // db.Player.find({}).then(function (dbPlayer) {
     //   res.json(dbPlayer);
     // });

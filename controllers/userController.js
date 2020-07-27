@@ -1,6 +1,9 @@
 const db = require("../models");
 
 module.exports = {
+  basic: (req, res) => {
+    console.log("hit");
+  },
   // not done
   findById: (req, res) => {
     // db.User.findById(req.params.id)

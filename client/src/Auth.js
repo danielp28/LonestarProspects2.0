@@ -5,6 +5,8 @@ import jwtDecode from "jwt-decode";
 
 const LOGIN_SUCCESS_PAGE = "/coaches";
 const LOGIN_FAILURE_PAGE = "/";
+
+// TODO: make this dynamic depending on env
 // const REDIRECT_URI =  "http://lonestar-prospects.herokuapp.com/callback";
 const REDIRECT_URI = "http://localhost:3000/callback";
 
