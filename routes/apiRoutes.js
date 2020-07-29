@@ -1,12 +1,12 @@
-
-
+// this file does nothing, don't waste time here
+// TODO: rip out, all routes hit controllers!
 
 module.exports = function (app) {
-  var db = require("../models")
 
-  
+  var db = require("../models");
 
   app.get("/players", function (req, res) {
+    
     db.Player.find({})
       .then(function (dbPlayer) {
         res.json(dbPlayer)
@@ -14,6 +14,7 @@ module.exports = function (app) {
   })
 
   app.get("/players/:id", function (req, res) {
+    
     db.Player.findOne({ _id: req.params.id })
       .populate("stats")
       .then(function (dbPlayer) {
@@ -25,6 +26,7 @@ module.exports = function (app) {
   });
 
   app.post("/api/players", function(req,res){
+    
     console.log (req.body);
     console.log(res)
     db.Player.create(req.body).then(function (dbPlayer ){

@@ -5,7 +5,7 @@ import Jumbotron from "../../components/Jumbotron";
 import { Col, Row, Container } from "../../components/Grid";
 import { List, ListItem } from "../../components/List";
 import { Input, FormBtn } from "../../components/Form";
-import API from "../../utils/API"
+import API from "../../utils/API";
 // import ProfilePage from "./ProfilePage";
 
 class Player extends Component {
@@ -19,71 +19,75 @@ class Player extends Component {
     class: "",
   };
 
-  handleInputChange = event => {
+  handleInputChange = (event) => {
     const value = event.target.value;
     const name = event.target.name;
     this.setState({
-      [name]: value
+      [name]: value,
     });
   };
 
-  //function to control the submit button of the search form 
-  handleFormSubmit = event => {
+  //function to control the submit button of the search form
+  handleFormSubmit = (event) => {
     event.preventDefault();
-    
+
     this.setState({
-      searched: []
-    })
+      searched: [],
+    });
 
     API.getPlayers()
-      .then(res => {
-        let results = []
+      .then((res) => {
+        let results = [];
         for (var i = 0; i < res.data.length; i++) {
-          let recordFirstName = (res.data[i].firstName).toUpperCase()
-          let recordLastName = (res.data[i].lastName).toUpperCase() 
-          let firstSearch = (this.state.firstName).toUpperCase().replace(/[^a-zA-Z0-9]/g, "")
-          let lastSearch = (this.state.lastName).toUpperCase().replace(/[^a-zA-Z0-9]/g, "")
-          console.log(recordFirstName, recordLastName)
+          let recordFirstName = res.data[i].firstName.toUpperCase();
+          let recordLastName = res.data[i].lastName.toUpperCase();
+          let firstSearch = this.state.firstName
+            .toUpperCase()
+            .replace(/[^a-zA-Z0-9]/g, "");
+          let lastSearch = this.state.lastName
+            .toUpperCase()
+            .replace(/[^a-zA-Z0-9]/g, "");
+          console.log(recordFirstName, recordLastName);
           if (res.data[i].position.name === this.state.position) {
             if (!results.includes(res.data[i])) {
-              results.push(res.data[i])
+              results.push(res.data[i]);
             }
           }
           if (parseInt(res.data[i].class) === parseInt(this.state.class)) {
             if (!results.includes(res.data[i])) {
-              results.push(res.data[i])
-            }          
+              results.push(res.data[i]);
+            }
           }
-          if (recordFirstName === firstSearch || recordLastName === lastSearch) {
+          if (
+            recordFirstName === firstSearch ||
+            recordLastName === lastSearch
+          ) {
             if (!results.includes(res.data[i])) {
-              results.push(res.data[i])
-            }          
+              results.push(res.data[i]);
+            }
           }
-          results.map(result => {
+          results.map((result) => {
             result = {
               firstName: result.firstName,
               lastName: result.lastName,
               position: {
                 name: result.position.name,
-                skills: result.position.skills
+                skills: result.position.skills,
               },
               height: result.height,
               weight: result.weight,
               highschool: result.highschool,
               class: result.class,
-              film: result.film
-            }
+              film: result.film,
+            };
             return result;
-          })
+          });
 
-          this.setState({ searched: results })
-
+          this.setState({ searched: results });
         }
-        console.log(this.state.searched)
-
+        console.log(this.state.searched);
       })
-      .catch(err => console.log(err));;
-
+      .catch((err) => console.log(err));
 
     // this.setState({
     //   firstName: "",
@@ -92,7 +96,6 @@ class Player extends Component {
     //   highschool: "",
     //   class: "",
     // });
-
   };
 
   // handleProfileRequest = id => {
@@ -100,6 +103,8 @@ class Player extends Component {
   // }
 
   render() {
+    API.checkUser().then((res) => console.log(res));
+    // API.checkUser({email: this.props.auth.isCoach()})
     return (
       <Container fluid>
         <Row>
@@ -165,11 +170,7 @@ class Player extends Component {
                   <option value="2023">2023</option>
                 </select>
               </div>
-              <FormBtn
-                onClick={this.handleFormSubmit}
-              >
-                Search Players
-              </FormBtn>
+              <FormBtn onClick={this.handleFormSubmit}>Search Players</FormBtn>
             </form>
             {this.displayData}
           </Col>
@@ -178,31 +179,23 @@ class Player extends Component {
           <Col size="md-12">
             {this.state.searched.length ? (
               <List>
-                {this.state.searched.map(player => (
+                {this.state.searched.map((player) => (
                   <ListItem key={player._id}>
                     <strong>
                       {player.firstName} {player.lastName}
                     </strong>
 
+                    <Col size="md-2">Position: {player.position.name}</Col>
+                    <Col size="md-2">Class: {player.class}</Col>
                     <Col size="md-2">
-                      Position: {player.position.name}
-                    </Col>
-                    <Col size="md-2">
-                      Class: {player.class}
-                    </Col>
-                    <Col size="md-2">
-                      <a 
-                      href={"/players/" + player._id}
-                      >
-                        View player profile
-                      </a>
+                      <a href={"/players/" + player._id}>View player profile</a>
                     </Col>
                   </ListItem>
                 ))}
               </List>
             ) : (
-                <h3>No Results to Display</h3>
-              )}
+              <h3>No Results to Display</h3>
+            )}
           </Col>
         </Row>
       </Container>
